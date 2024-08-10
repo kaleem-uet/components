@@ -27,6 +27,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import ColorSchemeToggle from "./ColorSchemeToggle";
 import { closeSidebar } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
 function Toggler({ defaultExpanded = false, renderToggle, children }) {
   const [open, setOpen] = React.useState(defaultExpanded);
@@ -49,7 +50,25 @@ function Toggler({ defaultExpanded = false, renderToggle, children }) {
   );
 }
 
+const Item = ({ title, to, Icon, selected, setSelected, onClick }) => {
+  const Navigate = useNavigate();
+  return (
+    <ListItem>
+      <ListItemButton
+        selected={selected === title}
+        onClick={() => Navigate(to)}
+      >
+        <Icon />
+        <ListItemContent onClick={() => setSelected(title)}>
+          <Typography level="title-sm">{title}</Typography>
+        </ListItemContent>
+      </ListItemButton>
+    </ListItem>
+  );
+};
 export default function Sidebar() {
+  const [selected, setSelected] = React.useState("dashboard");
+  const Navigate = useNavigate();
   return (
     <Sheet
       className="Sidebar"
@@ -131,32 +150,21 @@ export default function Sidebar() {
             "--ListItem-radius": (theme) => theme.vars.radius.sm,
           }}
         >
-          <ListItem>
-            <ListItemButton>
-              <HomeRoundedIcon />
-              <ListItemContent>
-                <Typography level="title-sm">Home</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
+          <Item
+            title="Home"
+            to="/dashboard/home"
+            Icon={HomeRoundedIcon}
+            selected={selected}
+            setSelected={setSelected}
+          />
 
-          <ListItem>
-            <ListItemButton>
-              <DashboardRoundedIcon />
-              <ListItemContent>
-                <Typography level="title-sm">Dashboard</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem>
-            <ListItemButton selected>
-              <ShoppingCartRoundedIcon />
-              <ListItemContent>
-                <Typography level="title-sm">Orders</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
+          <Item
+            title="Order"
+            to="/dashboard/order"
+            Icon={DashboardRoundedIcon}
+            selected={selected}
+            setSelected={setSelected}
+          />
 
           <ListItem nested>
             <Toggler
