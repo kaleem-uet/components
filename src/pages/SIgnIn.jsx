@@ -188,7 +188,7 @@ export default function SignIn() {
                     type="submit"
                     fullWidth
                     onClick={() => {
-                      Navigate("/admin");
+                      Navigate("/dashboard");
                     }}
                   >
                     Sign in

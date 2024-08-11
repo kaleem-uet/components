@@ -3,17 +3,18 @@ import Box from "@mui/material/Box";
 import StatBox from "../comp/global/StatBox";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useTheme } from "@mui/joy";
 import Grid from "@mui/material/Grid";
+import { useTheme } from "@mui/material";
 function Home() {
   const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   return (
     <Grid container spacing={1}>
       <Grid item md={3}>
         <Box
           sx={{
             padding: 1,
-            // bgcolor: "#141b2d",
+            bgcolor: isDarkMode ? "primary.600" : "primary.50",
 
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
             borderRadius: 2,
@@ -36,7 +37,7 @@ function Home() {
         <Box
           sx={{
             padding: 1,
-            // bgcolor: "#141b2d",
+            bgcolor: isDarkMode ? "primary.600" : "primary.50",
 
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Example shadow
             borderRadius: 2,
@@ -59,7 +60,7 @@ function Home() {
         <Box
           sx={{
             padding: 1,
-            // bgcolor: "#141b2d",
+            bgcolor: isDarkMode ? "primary.600" : "primary.50",
 
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Example shadow
             borderRadius: 2,
@@ -82,7 +83,7 @@ function Home() {
         <Box
           sx={{
             padding: 1,
-            // bgcolor: "#141b2d",
+            bgcolor: isDarkMode ? "primary.600" : "primary.50",
 
             boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Example shadow
             borderRadius: 2,
